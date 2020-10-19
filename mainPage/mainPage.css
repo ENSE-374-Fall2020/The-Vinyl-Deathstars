@@ -1,0 +1,14 @@
+html,
+body,
+.cover {
+    height: 100%;
+}
+
+.cover {
+    background: url('img/main-01.jpeg') top left no-repeat;
+    background-size: cover;
+    display: table;
+    width: 100%;
+    padding: 0 20%;
+    box-shadow: inset 0 0 100px #000;
+}
