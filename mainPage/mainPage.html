@@ -2,25 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BookStore App</title>
 
     <!--Bootstrap-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="mainPage.css" rel="stylesheet" />
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
   </head>
   <body>
+    <!-- Nav Bar Functionality -->
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar-collapse"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="mainPage.html">BookStore App</a>
+        </div>
 
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">OurTeam</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <!--Cover Functionality-->
+    <!-- Nav Bar Functionality End -->
+
+    <!-- Cover Functionality -->
     <div class="cover">
-    
+      <div class="cover-text">
+        <h1>You probably haven&rsquo;t heard of us.</h1>
+        <p class="lead">We sell books at low price</p>
+        <a href="#why-us" role="button" class="btn btn-danger btn-danger btn-lg"
+          >Let's get started, I guess.</a
+        >
+      </div>
     </div>
-    <!-- Cover Functionality-->
-
-
+    <!-- Cover Functionality End-->
 
     <!-- JQuery (necessary for Bootstrap's JavaScript plugins)-->
     <script
@@ -28,6 +63,7 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
+    
     <!-- Include all compiled plugins or individual files required-->
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
