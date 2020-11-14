@@ -9,6 +9,6 @@ app.listen(port, function () {
     console.log(' server is running ' + port);
 });
 
-app.get('/', function (req, res) {
+app.get('/createPost', function (req, res) {
     res.render('./pages/postbook');
 });
