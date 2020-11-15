@@ -1,0 +1,35 @@
+<div class="modal fade" id="loginModal" aria-labelledby="loginModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalTitle">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="col-md-8 offset-md-1" action="/login" method="POST">
+                    <div class="form-group">
+                        <input type="username" class="form-control mb-3 mt-3" id="loginEmail" placeholder="Email"
+                            name="username" />
+
+                        <input type="password" class="form-control mb-3 mt-3" id="loginEmail" placeholder="Password"
+                            name="password" />
+                        <input type="submit" value="Login" class="btn btn-outline-primary" />
+                        <%if (errorLogin == true) { %>
+                        <div class="">
+                            <small id="passwordHelp" class="text-danger">
+                                Password or Email is incorrect.
+                            </small>
+                        </div>
+                        <% } %>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <a class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#signupModal">New user?
+                        Sign up here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

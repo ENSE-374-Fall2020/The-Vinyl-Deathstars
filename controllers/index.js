@@ -12,3 +12,7 @@ app.listen(port, function () {
 app.get('/createPost', function (req, res) {
     res.render('./pages/postbook');
 });
+
+app.get('/', function (req, res) {
+    res.render('./pages/home.ejs');
+});
