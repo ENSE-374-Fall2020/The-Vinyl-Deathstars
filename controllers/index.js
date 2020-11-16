@@ -20,3 +20,7 @@ app.get('/createPost', function (req, res) {
 app.get('/search', function (req, res) {
     res.render('./pages/search');
 });
+
+app.get('/classified', function (req, res) {
+    res.render('./pages/classified');
+});
