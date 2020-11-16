@@ -9,10 +9,14 @@ app.listen(port, function () {
     console.log(' server is running ' + port);
 });
 
+app.get('/', function (req, res) {
+    res.render('./pages/home.ejs');
+});
+
 app.get('/createPost', function (req, res) {
     res.render('./pages/postbook');
 });
 
-app.get('/', function (req, res) {
-    res.render('./pages/home.ejs');
+app.get('/search', function (req, res) {
+    res.render('./pages/search');
 });
