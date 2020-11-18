@@ -1,3 +1,14 @@
 .classified-img{
     object-fit: contain;
 }
+
+.fa-plus-circle{
+    color: green;
+    size: 4em;
+}
+
+.compose{
+    margin-top: 2em;
+    background: rgb(231, 243, 237);
+    border-radius: 2em;
+}

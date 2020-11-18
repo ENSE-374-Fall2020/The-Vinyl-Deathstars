@@ -24,3 +24,9 @@ app.get('/search', function (req, res) {
 app.get('/classified', function (req, res) {
     res.render('./pages/classified');
 });
+
+app.get('/inbox', function (req, res) {
+    res.render('./pages/inbox');
+});
+
+
