@@ -29,10 +29,10 @@
     <div class="container">
         <%- include('../partials/navbar.ejs',{user:false}) %>
         <div class="row">
-            <div class="col-1">
+            <div class="col-1 m-0 p-0">
                 <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
             </div>
-            <div class="col">
+            <div class="col p-0">
 
                 <form>
                     <div class="form-group row">
@@ -53,14 +53,21 @@
                         </div>
                     </div>
 
-                    <div class="m-3">
+                    <div class="mt-3">
                         <div id="editor">
                             <p>Hello World!</p>
                             <p>Some initial <strong>bold</strong> text</p>
                             <p><br></p>
                         </div>
                     </div>
-                    <button name="submit" type="submit" class="btn btn-success m-3">Send Message</button>
+
+                    <div class="row d-block offset-0 0">
+                        <button name="submit" type="submit" class="btn btn-success mt-3 ">Send Message</button>
+                        <button name="submit" type="button" class="btn-sm btn-warning float-right mt-3 p-1"><small
+                                class="p-0">Clear</small>
+                        </button>
+                    </div>
+
                 </form>
 
 
