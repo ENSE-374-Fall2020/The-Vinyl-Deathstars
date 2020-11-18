@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!-- Latest compiled and minified CSS -->
+    <title>Home</title>
+</head>
+
+<body class="">
+
+    <div class="container">
+
+
+        <%- include('../partials/navbar.ejs',{user:false}) %>
+        <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
+        <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
+
+
+        <div class="row d-block">
+            <div class="col-2 float-left compose text-center p-3  "> <button class="btn"><i
+                        class="fa fa-2x fa-plus-circle" aria-hidden="true"></i>
+                    <p class="text-muted">Compose</p>
+                </button>
+
+            </div>
+            <div class="tab-content col-10 float-left">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab"
+                            aria-controls="home" aria-selected="true">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent" role="tab"
+                            aria-controls="profile" aria-selected="false">Sent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab"
+                            aria-controls="contact" aria-selected="false">Archive</a>
+                    </li>
+                </ul>
+                <div class="tab-pane active" id="inbox">
+                    <table class="table table-striped tab-pane show active  ">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Select</th>
+                                <th>From</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="sent">
+                    <table id="sent" class="table table-striped tab-pane ">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Select</th>
+                                <th>From</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+</body>
+
+</html>

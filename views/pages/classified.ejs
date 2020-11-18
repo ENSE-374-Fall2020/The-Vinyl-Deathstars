@@ -17,6 +17,8 @@
 
     <div class="container ">
         <%- include('../partials/navbar.ejs',{user:false}) %>
+        <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
+        <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
         <div class="row">
             <div class="col-1">
                 <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
