@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
+bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 const port = 3000;
 
 app.listen(port, function () {
@@ -27,6 +32,16 @@ app.get('/classified', function (req, res) {
 
 app.get('/inbox', function (req, res) {
     res.render('./pages/inbox');
+});
+
+app.get('/compose', function (req, res) {
+    res.render('./pages/compose');
+});
+
+app.post('/compose', function (req, res) {
+    var obj = {};
+    console.log('body: ' + JSON.stringify(req.body.input));
+    res.send(req.body);
 });
 
 
