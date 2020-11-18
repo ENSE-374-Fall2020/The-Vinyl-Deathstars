@@ -9,6 +9,8 @@
     <!-- Theme included stylesheets -->
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- Core build with no theme, formatting, non-essential modules -->
     <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
@@ -26,14 +28,47 @@
 
     <div class="container">
         <%- include('../partials/navbar.ejs',{user:false}) %>
-        <div id="editor">
-            <p>Hello World!</p>
-            <p>Some initial <strong>bold</strong> text</p>
-            <p><br></p>
-        </div>
+        <div class="row">
+            <div class="col-1">
+                <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="col">
 
+                <form>
+                    <div class="form-group row">
+                        <label for="text" class="col-1 col-form-label">To:</label>
+                        <div class="col-8">
+                            <input id="text" name="text" placeholder="Enter username" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="text1" class="col-1 col-form-label">Subject:</label>
+                        <div class="col-8">
+                            <input id="text1" name="text1" placeholder="Describe your message" type="text"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2 col-10">
+                        </div>
+                    </div>
+
+                    <div class="m-3">
+                        <div id="editor">
+                            <p>Hello World!</p>
+                            <p>Some initial <strong>bold</strong> text</p>
+                            <p><br></p>
+                        </div>
+                    </div>
+                    <button name="submit" type="submit" class="btn btn-success m-3">Send Message</button>
+                </form>
+
+
+
+            </div>
+        </div>
         <!-- Include the Quill library -->
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 
         <!-- Initialize Quill editor -->
 
@@ -59,7 +94,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
