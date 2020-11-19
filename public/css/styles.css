@@ -12,3 +12,17 @@
     background: rgb(231, 243, 237);
     border-radius: 2em;
 }
+
+.mdl-textfield__label{  
+    margin-bottom:0px;
+  }
+
+.scrollable{
+    overflow: auto;
+    height: 60vh;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+}

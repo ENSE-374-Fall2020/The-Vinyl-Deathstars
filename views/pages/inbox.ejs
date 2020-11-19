@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -22,33 +25,47 @@
         <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
         <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
 
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab"
+                    aria-controls="home" aria-selected="true">Inbox</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="profile"
+                    aria-selected="false">Sent</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab"
+                    aria-controls="contact" aria-selected="false">Archive</a>
+            </li>
+        </ul>
+        <div class="row">
+            <div class=" col-1 mr-5  text-center p-3  ">
 
-        <div class="row d-block">
-            <div class="col-2 float-left compose text-center p-3  "> <button class="btn"><i
-                        class="fa fa-2x fa-plus-circle" aria-hidden="true"></i>
-                    <p class="text-muted">Compose</p>
-                </button>
+                <div class=" text-center p-2 ">
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--green-A700">
+                        <i class="material-icons">add</i>
 
+                    </button>
+                    <p>Compose</p>
+                </div>
+                <div class=" text-center p-2 ">
+                    <button class="mdl-button mdl-color--red-300 mdl-js-button mdl-button--fab mdl-js-ripple-effect ">
+                        <i class="material-icons ">delete</i>
+
+                    </button>
+                    <p>Delete Selected</p>
+                </div>
             </div>
-            <div class="tab-content col-10 float-left">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab"
-                            aria-controls="home" aria-selected="true">Inbox</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent" role="tab"
-                            aria-controls="profile" aria-selected="false">Sent</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab"
-                            aria-controls="contact" aria-selected="false">Archive</a>
-                    </li>
-                </ul>
-                <div class="tab-pane active" id="inbox">
+
+            <div class="tab-content col float-left ">
+
+
+                <div class="tab-pane active scrollable" id="inbox">
+
                     <table class="table table-striped tab-pane show active  ">
-                        <thead class="thead-light">
-                            <tr>
+                        <thead class="thead-light ">
+                            <tr class="sticky">
                                 <th>Select</th>
                                 <th>From</th>
                                 <th>Subject</th>
@@ -58,6 +75,31 @@
 
                         </thead>
                         <tbody>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
+                            <%- include('../partials/inboxEntry.ejs') %>
                             <%- include('../partials/inboxEntry.ejs') %>
                             <%- include('../partials/inboxEntry.ejs') %>
                             <%- include('../partials/inboxEntry.ejs') %>
@@ -86,29 +128,72 @@
                         </tbody>
                     </table>
                 </div>
+                <table id="sent" class="table table-striped tab-pane ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Select</th>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody>
+                        <%- include('../partials/inboxEntry.ejs') %>
+                        <%- include('../partials/inboxEntry.ejs') %>
+
+                    </tbody>
+                </table>
             </div>
+            <div id="email" class="col collapse show">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button id="closeEmail" class="mdl-button float-right mdl-js-button " data-toggle="collapse"
+                                data-target="#email">
+                                <i class="material-icons ">clear</i>
+                        </h5>
+
+                    </div>
+
+                    <div id="email-body" class="collapse show" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+        <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+            </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
 
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/scripts/inbox-script.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 </body>
 
 </html>
