@@ -14,13 +14,24 @@
 
     </ul>
     <ul class="nav navbar-nav ml-auto">
+        <% if(user) { %>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                <u>Logged in as <%=user%></u>
+            </a>
+            <div class="dropdown-menu">
+                <div class="dropdown-divider"></div>
+                <form method="GET" action="/logout"><button type="submit" name="logout" class="dropdown-item "><i
+                            class="fas fa-sign-out-alt"></i>Logout</button>
+                </form>
+            </div>
+        </li>
+        <%}%>
         <li class="nav-item">
-            <% if(user) { %>
-            <a class="nav-link" href="#">Logout</a>
-            <% }else{%>
-            <button type="button" class="btn btn-primary float-right" data-dismiss="modal" data-toggle="modal"
-                data-target="#loginModal">Login</button>
-            <% } %>
+            <% if(!user){ %>
+        <button type="button" class="btn btn-primary float-right" data-dismiss="modal" data-toggle="modal"
+            data-target="#loginModal">Login</button>
+        <% } %>
         </li>
     </ul>
 </nav>
