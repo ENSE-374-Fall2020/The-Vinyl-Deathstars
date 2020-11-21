@@ -3,7 +3,7 @@ $(document).ready(function () {
     console.log("ready!");
 
 
-    $("tr").click(function (e) {
+    $("tr.mailEntry").click(function (e) {
 
         $("#email").collapse('show');
         var from = $(this).find(".username").html();
@@ -19,6 +19,12 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
+
+
+
 
 
 

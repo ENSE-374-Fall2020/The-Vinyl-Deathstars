@@ -34,3 +34,15 @@
     background-color: #b2d8b4 !important;
     color: white !important;
 }
+
+.inboxSort{
+    border: none;
+    background: transparent;
+    text-transform: capitalize;
+}
+
+.inboxSort:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    
+}

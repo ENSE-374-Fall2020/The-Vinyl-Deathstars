@@ -72,12 +72,25 @@
 
                     <table class="table table-striped tab-pane show active  ">
                         <thead class="thead-light ">
-                            <tr class="sticky">
-                                <th>Select</th>
-                                <th>From</th>
-                                <th>Subject</th>
-                                <th>Date</th>
-                            </tr>
+
+                            <form action="/inbox" method="GET">
+                                <tr class="sticky">
+                                    <th>Select</th>
+
+                                    <th><button type="submit" name="from"
+                                            value="<%= (sort == 'from' && direction == 1) ? '-1' : '1' %>"
+                                            class="inboxSort">From</button>
+                                    </th>
+
+                                    <th> <button type="submit" name="subject"
+                                            value="<%= (sort == 'subject' && direction == 1) ? '-1' : '1' %>"
+                                            class="inboxSort">Subject</button></th>
+
+                                    <th> <button type="submit" name="date"
+                                            value="<%= (sort == 'date' && direction == 1) ? '-1' : '1' %>"
+                                            class="inboxSort active">Date</button></th>
+                                </tr>
+                            </form>
 
                         </thead>
                         <tbody>
@@ -89,7 +102,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane" id="sent">
+                <div class=" tab-pane" id="sent">
                     <table id="sent" class="table table-striped tab-pane ">
                         <thead class="thead-light">
                             <tr>

@@ -94,22 +94,50 @@ app.get('/classified', function (req, res) {
 
 app.get('/inbox', async function (req, res) {
     if (req.isAuthenticated()) {
-        if (req.query) {
-            var type = req.query.type;
-            var sort = req.query.sort;
+
+        if (Object.keys(req.query).length > 0) {
+            var sortObj = req.query;
+            var sort = Object.keys(sortObj)[0];
+            var direction = Object.values(sortObj)[0];
+
         }
         else {
-            var type = 'inbox';
-            var sort = 'dateDesc';
+            //asc 1 desc -1
+            var direction = 1;
+            var sort = 'from';
         }
 
-        var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from');
+        var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from', 'username');
+
+        inbox.sort(function (a, b) {
+            if (sort == 'date') {
+                var date1 = new Date(a.date);
+                var date2 = new Date(b.date);
+
+                return (date1 > date2) ? direction : direction * -1;
+
+            }
+            if (sort == 'from') {
+                var user1 = a.from;
+                var user2 = b.from;
+
+                return (user1.username.localeCompare(user2.username)) * direction;
+
+            }
+            if (sort == 'subject') {
+                var user1 = a;
+                var user2 = b;
+
+                return (user1.subject.localeCompare(user2.subject)) * direction;
+
+            }
+        });
 
 
-        res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox });
+        res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox, sort: sort, direction: direction });
     }
     else {
-        res.render('./pages/inbox.ejs', { user: false });
+        res.redirect('/');
     }
 });
 
