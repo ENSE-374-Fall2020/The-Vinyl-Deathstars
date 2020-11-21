@@ -21,9 +21,7 @@
     <div class="container">
 
 
-        <%- include('../partials/navbar.ejs',{user:false}) %>
-        <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
-        <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
+        <%- include('../partials/navbar.ejs',{user:user}) %>
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">

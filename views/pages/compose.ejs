@@ -36,7 +36,7 @@
 
 
     <div class="container  ">
-        <%- include('../partials/navbar.ejs',{user:false}) %>
+        <%- include('../partials/navbar.ejs',{user:user}) %>
         <div class="row">
             <div class="col-1 m-0 p-0">
                 <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
@@ -70,7 +70,8 @@
                     </div>
 
                     <div class="row d-block ml-2">
-                        <button name="submit" type="submit" class="btn btn-success mt-3 ">Send Message</button>
+                        <button id="sendMessage" name="submit" type="submit" class="btn btn-success mt-3 ">Send
+                            Message</button>
 
                     </div>
 
