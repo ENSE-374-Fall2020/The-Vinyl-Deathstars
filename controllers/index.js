@@ -92,14 +92,48 @@ app.get('/classified', function (req, res) {
     }
 });
 
-app.get('/inbox', function (req, res) {
+app.get('/inbox', async function (req, res) {
     if (req.isAuthenticated()) {
+        if (req.query) {
+            var type = req.query.type;
+            var sort = req.query.sort;
+            var mail = req.query.mail;
+        }
+        else {
+            var type = 'inbox';
+            var sort = 'dateDesc';
+        }
 
-        res.render('./pages/inbox.ejs', { user: req.user.username });
+        var inbox = await Mail.find({ to: req.user._id }, { message: 0 });
+        console.log(mail);
+        if (mail) {
+            var message = await Mail.findOne({ _id: mail }, { message: 1, _id: 0 });
+            message = message.message; //gets rid of of single field json
+            console.log(message);
+        }
+
+        res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox, message: message });
     }
     else {
         res.render('./pages/inbox.ejs', { user: false });
     }
+});
+
+app.get('/viewMail', async function (req, res) {
+    if (req.isAuthenticated()) {
+        if (req.query) {
+            var mail = req.query.mail;
+        }
+        console.log(mail);
+        if (mail) {
+            var message = await Mail.findOne({ _id: mail }, { message: 1, _id: 0 });
+            message = message.message; //gets rid of of single field json
+            console.log(message);
+        }
+
+        res.send({ message: message });
+    }
+
 });
 
 app.get('/compose', function (req, res) {
@@ -119,22 +153,19 @@ app.post('/compose', async function (req, res) {
     var toUser = await User.findOne({ username: req.body.to }, function (err) {
         if (err) return res.send({ message: "error" });
     });
-    var fromUser = await User.findOne({ username: req.user.username }, function (err) {
-        if (err) return res.send({ message: "error" });
-    });
 
     if (!toUser) {
         return res.send({ message: "Recipient does not exist" });
     }
 
-    if (fromUser._id.equals(toUser._id)) {
+    if (req.user._id.equals(toUser._id)) {
         return res.send({ message: "You can't send mail to yourself!" });
     }
 
 
     const mail = new Mail({
         to: toUser._id,
-        from: fromUser._id,
+        from: req.user._id,
         subject: req.body.subject,
         date: new Date().toLocaleString("en-US", { timeZone: "America/Regina" }),
         message: req.body.message
@@ -147,7 +178,7 @@ app.post('/compose', async function (req, res) {
 
 
 
-    redirect('/inbox');
+    res.redirect('/inbox');
 });
 
 app.post('/login', function (req, res, next) {
@@ -158,7 +189,7 @@ app.post('/login', function (req, res, next) {
             console.log(info);
             return res.send({ error: "false" });
         }
-        req.logIn(user, function (err) {
+        req.logIn(user, async function (err) {
             if (err) {
 
                 return next(err);
