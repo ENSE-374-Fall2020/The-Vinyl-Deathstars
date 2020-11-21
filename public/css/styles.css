@@ -26,3 +26,11 @@
     position: sticky;
     top: 0;
 }
+.mailEntry{
+    transition: 0.3s;
+}
+.mailEntry:hover{
+    cursor: pointer;
+    background-color: #b2d8b4 !important;
+    color: white !important;
+}
