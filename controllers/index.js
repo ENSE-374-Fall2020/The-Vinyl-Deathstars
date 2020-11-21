@@ -18,7 +18,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
+
+//Model Requires
 const User = require("../models/user");
+const Mail = require("../models/mail");
+
+
+
+
 app.use(express.static('public'));
 app.use(session({
     //secret: process.env.SECRET, // stores our secret in our .env file
@@ -53,29 +60,94 @@ app.get('/', function (req, res) {
 });
 
 app.get('/createPost', function (req, res) {
-    res.render('./pages/postbook');
+    if (req.isAuthenticated()) {
+
+        res.render('./pages/postbook.ejs', { user: req.user.username });
+    }
+    else {
+        res.redirect('/');
+
+    }
 });
 
 app.get('/search', function (req, res) {
-    res.render('./pages/search');
+    if (req.isAuthenticated()) {
+
+        res.render('./pages/search.ejs', { user: req.user.username });
+    }
+    else {
+        res.render('./pages/search.ejs', { user: false });
+
+    }
 });
 
 app.get('/classified', function (req, res) {
-    res.render('./pages/classified');
+    if (req.isAuthenticated()) {
+
+        res.render('./pages/classified.ejs', { user: req.user.username });
+    }
+    else {
+        res.render('./pages/classified.ejs', { user: false });
+
+    }
 });
 
 app.get('/inbox', function (req, res) {
-    res.render('./pages/inbox');
+    if (req.isAuthenticated()) {
+
+        res.render('./pages/inbox.ejs', { user: req.user.username });
+    }
+    else {
+        res.render('./pages/inbox.ejs', { user: false });
+    }
 });
 
 app.get('/compose', function (req, res) {
-    res.render('./pages/compose');
+    if (req.isAuthenticated()) {
+
+        res.render('./pages/compose.ejs', { user: req.user.username });
+    }
+    else {
+        res.redirect('/');
+
+    }
 });
 
-app.post('/compose', function (req, res) {
-    var obj = {};
-    console.log('body: ' + JSON.stringify(req.body.input));
-    res.send(req.body);
+
+app.post('/compose', async function (req, res) {
+    console.log(req.body);
+    var toUser = await User.findOne({ username: req.body.to }, function (err) {
+        if (err) return res.send({ message: "error" });
+    });
+    var fromUser = await User.findOne({ username: req.user.username }, function (err) {
+        if (err) return res.send({ message: "error" });
+    });
+
+    if (!toUser) {
+        return res.send({ message: "Recipient does not exist" });
+    }
+
+    if (fromUser._id.equals(toUser._id)) {
+        return res.send({ message: "You can't send mail to yourself!" });
+    }
+
+
+    const mail = new Mail({
+        to: toUser._id,
+        from: fromUser._id,
+        subject: req.body.subject,
+        date: new Date().toLocaleString("en-US", { timeZone: "America/Regina" }),
+        message: req.body.message
+
+    });
+
+    mail.save(function (err) {
+        if (err) console.log(err);
+    });
+
+
+
+    redirect('/inbox');
 });
 
 app.post('/login', function (req, res, next) {
@@ -91,8 +163,7 @@ app.post('/login', function (req, res, next) {
 
                 return next(err);
             }
-            console.log('loginerror');
-            return res.redirect('/');
+            return res.redirect('back');
         });
     })(req, res, next);
 

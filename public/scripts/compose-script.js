@@ -6,20 +6,26 @@ $(document).ready(function () {
         theme: 'snow'
     });
     var myEditor = $('#editor');
-    var html = {};
-    html.input = myEditor.find('.ql-editor').html();
-    console.log(html);
 
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(html),
-        contentType: 'application/json',
-        url: 'http://localhost:3000/compose',
-        success: function (html) {
-            console.log('success');
-            console.log(JSON.stringify(html));
-        }
+
+
+    $("#sendMessage").click(function (e) {
+        e.preventDefault();
+        var mail = {};
+        mail.message = myEditor.find('.ql-editor').html();
+        mail.to = $("#to").val();
+        mail.subject = $("#subject").val();
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(mail),
+            contentType: 'application/json',
+            url: 'http://localhost:3000/compose',
+            success: function (response) {
+                console.log(response);
+            }
+        });
     });
+
 
 
 

@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema(
     });
 userSchema.plugin(ppLocalMongoose);
 
-const User = new mongoose.model('User', userSchema);
+
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
