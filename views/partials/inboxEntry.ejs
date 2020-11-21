@@ -1,9 +1,9 @@
-<tr>
+<tr class="mailEntry">
     <td class="pl-3">
         <input type="checkbox">
     </td>
-    <td> <span class="mb-0 text-muted">Test</span></td>
-    <td> <a class="link"> <span class="text-dark"><%=mail.subject%></span> </a></td>
-    <td class="text-muted"><%=mail.date%></td>
+    <td> <span class="mb-0 text-muted username"><%=mail.from.username%></span></td>
+    <td> <a class="link"> <span class="text-dark subject"><%=mail.subject%></span> </a></td>
+    <td class="text-muted date"><%=mail.date%></td>
     <input type='hidden' name="msg" value="<%=mail._id%>" />
 </tr>

@@ -23,7 +23,7 @@
 
         <%- include('../partials/navbar.ejs',{user:user}) %>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs col-3" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inbox" role="tab"
                     aria-controls="home" aria-selected="true">Inbox</a>
@@ -41,10 +41,11 @@
             <div class=" col-1 mr-5  text-center p-3  ">
 
                 <div class=" text-center p-2 ">
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--green-A700">
+                    <a href="./compose"
+                        class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--green-A700">
                         <i class="material-icons">add</i>
 
-                    </button>
+                    </a>
                     <p>Compose</p>
                 </div>
                 <div class=" text-center p-2 ">
@@ -121,13 +122,16 @@
                     </tbody>
                 </table>
             </div>
-            <div id="email" class="col collapse show">
+            <div id="email" class="col collapse">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button id="closeEmail" class="mdl-button float-right mdl-js-button " data-toggle="collapse"
-                                data-target="#email">
-                                <i class="material-icons ">clear</i>
+                            <p><span id="subject"></span></p>
+                            <p> <span id="date"></span></p>
+                            <p> <span id="from"></span>
+                                <button id="closeEmail" class="mdl-button float-right mdl-js-button "
+                                    data-toggle="collapse" data-target="#email">
+                                    <i class="material-icons ">clear</i>
                         </h5>
 
                     </div>
