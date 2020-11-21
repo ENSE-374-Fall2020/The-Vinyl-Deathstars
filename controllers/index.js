@@ -97,22 +97,16 @@ app.get('/inbox', async function (req, res) {
         if (req.query) {
             var type = req.query.type;
             var sort = req.query.sort;
-            var mail = req.query.mail;
         }
         else {
             var type = 'inbox';
             var sort = 'dateDesc';
         }
 
-        var inbox = await Mail.find({ to: req.user._id }, { message: 0 });
-        console.log(mail);
-        if (mail) {
-            var message = await Mail.findOne({ _id: mail }, { message: 1, _id: 0 });
-            message = message.message; //gets rid of of single field json
-            console.log(message);
-        }
+        var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from');
 
-        res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox, message: message });
+
+        res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox });
     }
     else {
         res.render('./pages/inbox.ejs', { user: false });
@@ -128,7 +122,6 @@ app.get('/viewMail', async function (req, res) {
         if (mail) {
             var message = await Mail.findOne({ _id: mail }, { message: 1, _id: 0 });
             message = message.message; //gets rid of of single field json
-            console.log(message);
         }
 
         res.send({ message: message });
