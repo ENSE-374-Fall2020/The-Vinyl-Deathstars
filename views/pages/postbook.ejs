@@ -17,11 +17,11 @@
     <div class="container">
         <%- include('../partials/navbar.ejs',{user:user}) %>
 
-        <form class="bg-light">
+        <form class="bg-light" action="/createPost" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-6 offset-md-2">
                     <label for="inputTitle">Title</label>
-                    <input name="inputTitle" placeholder="Enter Book Title" type="text" class="form-control"
+                    <input name="inputTitle" required placeholder="Enter Book Title" type="text" class="form-control"
                         id="inputTitle">
                 </div>
 
@@ -30,7 +30,7 @@
             <div class="form-row">
                 <div class="form-group mw-75 offset-md-2">
                     <label for="inputCategory">Category</label>
-                    <select name="inputCategory" id="inputCategory" class="selectpicker form-control" multiple>
+                    <select required name="inputCategory" id="inputCategory" class="selectpicker form-control" multiple>
                         <option>History</option>
                         <option>Geology</option>
                         <option>Art</option>
@@ -38,31 +38,49 @@
 
                     </select>
                 </div>
+                <div class="form-group offset-md-1 mt-3">
+                    <div class="form-check ">
+
+                        <input class="form-check-input" type="radio" name="buyOrSell" id="buy" value="buying" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            <span class="badge badge-success p-2 mb-1">Buying</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="buyOrSell" id="sell" value="selling">
+                        <label class="form-check-label" for="exampleRadios2">
+                            <span class="badge badge-primary p-2">Selling</span>
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-2 offset-md-2">
                     <label for="inputPrice">Price</label>
-                    <input name="inputPrice" placeholder="$0.00" min="0" type="number" step="0.01" class="form-control"
-                        id="inputPrice">
+                    <input name="inputPrice" required placeholder="$0.00" min="0" type="number" step="0.01"
+                        class="form-control" id="inputPrice">
                 </div>
                 <div class="form-group offset-md-1 col-md-3">
-                    <label for="inputPrice">Picture</label>
+                    <!-- <label for="inputPrice">Picture</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputFile">
+                            <input type="file" enctype="multipart/form-data" class="custom-file-input" id="inputFile">
                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
-                    </div>
+                       
+                    </div> -->
+                    <label for="myFile">Upload a file</label>
+                    <input type="file" name="myFile" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 offset-md-2">
                     <label for="inputPrice">Description</label>
-                    <textarea name="inputDescription" placeholder="Describe Post" min="0" type="textarea" step="0.01"
-                        class="form-control" id="inputDescription"></textarea>
+                    <textarea required name="inputDescription" placeholder="Describe Post" min="0" type="textarea"
+                        step="0.01" class="form-control" id="inputDescription"></textarea>
                 </div>
             </div>
             <div class="form-row">

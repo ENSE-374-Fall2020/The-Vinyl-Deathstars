@@ -2,6 +2,11 @@
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
+const http = require("http");
+const multer = require("multer");
+
 bodyParser = require('body-parser');
 mongoose.connect("mongodb://localhost:27017/bookDB",
     {
@@ -22,6 +27,7 @@ app.set('view engine', 'ejs');
 //Model Requires
 const User = require("../models/user");
 const Mail = require("../models/mail");
+const Classified = require("../models/classified");
 
 
 
@@ -43,6 +49,32 @@ passport.deserializeUser(User.deserializeUser());
 
 
 const port = 3000;
+
+//set storage for pictures
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/pictures');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+            req.fileError = "Not a picture";
+            return callback(null, false, req.fileError);
+        }
+        callback(null, true);
+    },
+});
+
+
+
+
 
 app.listen(port, function () {
     console.log(' server is running ' + port);
@@ -70,16 +102,73 @@ app.get('/createPost', function (req, res) {
     }
 });
 
-app.get('/search', function (req, res) {
+
+
+app.post('/createPost', upload.single('myFile'), function (req, res) {
     if (req.isAuthenticated()) {
 
-        res.render('./pages/search.ejs', { user: req.user.username });
+        if (req.fileError) { //checks to see if not right file type, if not, add file to server
+
+            res.send(req.fileError);
+        }
+        else {
+
+            console.log(req.body);
+            console.log(req.file);
+
+            const classified = new Classified(
+                {
+                    user: req.user._id,
+                    name: req.body.inputTitle,
+                    description: req.body.inputDescription,
+                    categorys: req.body.inputCategory,
+                    postType: req.body.buyOrSell,
+                    image: "/pictures/" + req.file.filename,
+                    price: req.body.inputPrice
+
+                });
+
+            classified.save(function (err) {
+                if (err) console.log(err);
+            });
+
+            console.log(classified);
+            res.redirect('/');
+        }
+
     }
     else {
-        res.render('./pages/search.ejs', { user: false });
+        res.redirect('/');
 
     }
 });
+
+
+
+
+
+
+app.get('/search', async function (req, res) {
+    if (Object.keys(req.query).length > 0) {
+
+    }
+    else {
+        var classifieds = await Classified.find().populate('user', 'username');
+    }
+
+    if (req.isAuthenticated()) {
+
+
+        res.render('./pages/search.ejs', { user: req.user.username, classifieds: classifieds });
+    }
+    else {
+        res.render('./pages/search.ejs', { user: false, classifieds: classifieds });
+
+    }
+});
+
+
+
 
 app.get('/classified', function (req, res) {
     if (req.isAuthenticated()) {
@@ -91,6 +180,9 @@ app.get('/classified', function (req, res) {
 
     }
 });
+
+
+
 
 app.get('/inbox', async function (req, res) {
     if (req.isAuthenticated()) {
@@ -141,6 +233,9 @@ app.get('/inbox', async function (req, res) {
     }
 });
 
+
+
+
 app.get('/viewMail', async function (req, res) {
     if (req.isAuthenticated()) {
         if (req.query) {
@@ -157,6 +252,10 @@ app.get('/viewMail', async function (req, res) {
 
 });
 
+
+
+
+
 app.get('/compose', function (req, res) {
     if (req.isAuthenticated()) {
 
@@ -169,18 +268,28 @@ app.get('/compose', function (req, res) {
 });
 
 
-app.post('/compose', async function (req, res) {
-    console.log(req.body);
-    var toUser = await User.findOne({ username: req.body.to }, function (err) {
-        if (err) return res.send({ message: "error" });
-    });
 
-    if (!toUser) {
-        return res.send({ message: "Recipient does not exist" });
+
+
+app.post('/compose', async function (req, res) {
+    var toUser = await User.findOne({ username: req.body.to }, function (err) {
+        if (err) return res.status(400).send({ message: "error" });
+    });
+    console.log(toUser);
+    console.log(req.body);
+
+    //check validity of mail
+    if (!toUser || toUser.username == "") {
+        return res.status(422).send({ message: "Recipient does not exist" });
     }
 
     if (req.user._id.equals(toUser._id)) {
-        return res.send({ message: "You can't send mail to yourself!" });
+        return res.status(422).send({ message: "You can't send mail to yourself!" });
+    }
+
+
+    if (req.body.subject == "") {
+        return res.status(422).send({ message: "Subject Must not be empty" });
     }
 
 
@@ -198,9 +307,12 @@ app.post('/compose', async function (req, res) {
     });
 
 
+    res.send("All good"); //message saved and redirect back to inbox
 
-    res.redirect('/inbox');
 });
+
+
+
 
 app.post('/login', function (req, res, next) {
 
@@ -220,6 +332,9 @@ app.post('/login', function (req, res, next) {
     })(req, res, next);
 
 });
+
+
+
 
 app.post('/register', function (req, res) {
     console.log(req.body.username);

@@ -38,6 +38,11 @@
     <div class="container  ">
         <%- include('../partials/navbar.ejs',{user:user}) %>
         <div class="row">
+            <div class="alert alert-danger mt-1 col-3" style="display: none" id="errMsg">
+                <strong>Danger!</strong> <span id="errText">Indicates a dangerous or potentially negative action.</span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-1 m-0 p-0">
                 <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
             </div>
@@ -81,6 +86,8 @@
 
             </div>
         </div>
+
+
 
 
 
