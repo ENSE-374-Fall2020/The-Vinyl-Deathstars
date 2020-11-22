@@ -36,14 +36,17 @@
                         <button type="submit" class="btn m-3 btn-primary">Search</button>
                     </div>
                 </div>
+            </form>
         </div>
         <div class="row offset-md-2">
             <% for(var classifiedEntry = 0; classifiedEntry < classifieds.length; classifiedEntry++ ) { %>
             <%- include('../partials/searchEntry.ejs',
             {title: classifieds[classifiedEntry].name,
+             _id: classifieds[classifiedEntry]._id,
             description: classifieds[classifiedEntry].description,
             price: classifieds[classifiedEntry].price,
             category: classifieds[classifiedEntry].categorys,
+            postType: classifieds[classifiedEntry].postType,
             image: classifieds[classifiedEntry].image});
             %>
             <% }%>

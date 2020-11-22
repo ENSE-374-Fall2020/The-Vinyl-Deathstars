@@ -24,13 +24,12 @@
                 <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
             </div>
             <div class="col-md-6 offset-md-1 card card-body ">
-                <img class="classified-img bg-dark img-rounded"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Textbook.JPG/440px-Textbook.JPG"></img>
+                <img class="classified-img bg-dark img-rounded" src="<%=classified.image%>"></img>
             </div>
             <div class=" col-md-3">
                 <div class=" card bg-white text-center">
                     <div class="card-header">
-                        <h4>John Doe</h4>
+                        <h4><%=classified.user.username%></h4>
                     </div>
                     <div class="card-body">
                         <button class="btn btn-primary btn-lg" href="#">Send Message</button>
@@ -43,20 +42,22 @@
             <div class="col-md-6 offset-md-2 mt-5 ">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="d-inline">Book Title <span class=" p-2 badge badge-info">Buying</span></h3> <span
-                            class="float-right text-muted">Category: History,
-                            Drama</span>
+                        <h3 class="d-inline">Book Title <span style="text-transform: capitalize;"
+                                class=" p-2   badge badge-<%= (classified.postType=='buying') ? 'success' : 'primary'%>"><%=classified.postType%></span>
+                        </h3> <span
+                            class="float-right text-muted"><% for(var i=0; i < classified.categorys.length; i++) { %>
+                            <%=classified.categorys[i] %>
+                            <% } %>
+
+                        </span>
                         <div>
-                            <span class="text-success">Price: 19.99</span></div>
+                            <span class="text-success">Price: <%=classified.price%></span></div>
                     </div>
                     <card class="card-body">
                         <h4 class=" ">Description
 
                         </h4>
-                        <p class="lead">text ext text text et text ext text text et text ext text text et text ext
-                            text text et
-                            text
-                            ext text text et</p>
+                        <p class="lead"><%=classified.description%></p>
                     </card>
                 </div>
 
