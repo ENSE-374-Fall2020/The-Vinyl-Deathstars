@@ -13,6 +13,7 @@ mongoose.connect("mongodb://localhost:27017/bookDB",
         useNewUrlParser: true, // these avoid MongoDB deprecation warnings
         useUnifiedTopology: true
     });
+mongoose.set('useCreateIndex', true);
 const passport = require("passport");
 //set up passport for user
 const ppLocalMongoose = require("passport-local-mongoose");
@@ -149,8 +150,10 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
 
 
 app.get('/search', async function (req, res) {
-    if (Object.keys(req.query).length > 0) {
+    console.log(req.query);
+    if (req.query.search) {
 
+        var classifieds = await Classified.find({ $text: { $search: req.query.search } }).populate('user', 'username');
     }
     else {
         var classifieds = await Classified.find().populate('user', 'username');

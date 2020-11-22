@@ -19,6 +19,8 @@ const classifiedSchema = new mongoose.Schema(
 
     });
 
+classifiedSchema.index({ description: 'text', name: 'text' });
+
 const Classified = mongoose.model('Classified', classifiedSchema);
 
 module.exports = Classified;
