@@ -25,6 +25,7 @@
 .sticky{
     position: sticky;
     top: 0;
+    z-index: 2;
 }
 .mailEntry{
     transition: 0.3s;
@@ -46,3 +47,10 @@
     text-decoration: underline;
     
 }
+
+.inboxCheck
+{
+    transform: scale(2);
+
+}
+
