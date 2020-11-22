@@ -173,13 +173,20 @@ app.get('/search', async function (req, res) {
 
 
 
-app.get('/classified', function (req, res) {
+app.get('/classified', async function (req, res) {
+    if (req.query) {
+        var classified = await Classified.findById(req.query._id).populate('user');
+
+    } else {
+        res.redirect('/search');
+    }
     if (req.isAuthenticated()) {
 
-        res.render('./pages/classified.ejs', { user: req.user.username });
+
+        res.render('./pages/classified.ejs', { user: req.user.username, classified: classified });
     }
     else {
-        res.render('./pages/classified.ejs', { user: false });
+        res.render('./pages/classified.ejs', { user: false, classified: classified });
 
     }
 });
@@ -194,6 +201,7 @@ app.get('/inbox', async function (req, res) {
             var sortObj = req.query;
             var sort = Object.keys(sortObj)[0];
             var direction = Object.values(sortObj)[0];
+            var mailbox = "";
 
         }
         else {
@@ -203,7 +211,6 @@ app.get('/inbox', async function (req, res) {
         }
 
         var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from', 'username');
-
         inbox.sort(function (a, b) {
             if (sort == 'date') {
                 var date1 = new Date(a.date);
@@ -227,6 +234,7 @@ app.get('/inbox', async function (req, res) {
 
             }
         });
+
 
 
         res.render('./pages/inbox.ejs', { user: req.user.username, inbox: inbox, sort: sort, direction: direction });

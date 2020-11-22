@@ -20,6 +20,11 @@ $(document).ready(function () {
         });
     });
 
+    $(".inboxCheck").click(function (e) {
+        e.stopPropagation();
+
+    });
+
 
 
 
