@@ -60,7 +60,7 @@ var storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
-
+//how we process image from classified 
 var upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback) {
@@ -152,7 +152,7 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
 app.get('/search', async function (req, res) {
     console.log(req.query);
     if (req.query.search) {
-
+        //searches description and name
         var classifieds = await Classified.find({ $text: { $search: req.query.search } }).populate('user', 'username');
     }
     else {
@@ -211,6 +211,8 @@ app.get('/inbox', async function (req, res) {
         }
 
         var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from', 'username');
+
+        //sorts by date/from/subject 1 asc -1 desc
         inbox.sort(function (a, b) {
             if (sort == 'date') {
                 var date1 = new Date(a.date);
@@ -354,11 +356,8 @@ app.post('/register', function (req, res) {
             console.log(err + " THIS");
             res.redirect('/');
         } else {
-            // authenticate using passport-local
-            // what is this double function syntax?! It's called currying.
             passport.authenticate("local")(req, res, function () {
 
-                //req.session.username = req.body.username;
                 console.log("success");
                 res.redirect('/');
 
