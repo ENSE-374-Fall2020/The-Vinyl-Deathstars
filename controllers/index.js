@@ -152,7 +152,7 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
 app.get('/search', async function (req, res) {
     console.log(req.query);
     if (req.query.search) {
-        //searches description and name
+        //searches description and name from previous index
         var classifieds = await Classified.find({ $text: { $search: req.query.search } }).populate('user', 'username');
     }
     else {
@@ -210,7 +210,7 @@ app.get('/inbox', async function (req, res) {
             var sort = 'from';
         }
 
-        var inbox = await Mail.find({ to: req.user._id }, { message: 0 }).populate('from', 'username');
+        var inbox = await Mail.find({ to: req.user._id, cleared: false }, { message: 0 }).populate('from', 'username');
 
         //sorts by date/from/subject 1 asc -1 desc
         inbox.sort(function (a, b) {
@@ -266,6 +266,21 @@ app.get('/viewMail', async function (req, res) {
 });
 
 
+app.post('/deleteMail', async function (req, res) {
+    if (req.isAuthenticated()) {
+
+        var deleteArr = [];
+        deleteArr.push(req.body.selections);
+        for (var entryIndex = 0; entryIndex < deleteArr.length; entryIndex++) {
+            var update = await Mail.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(deleteArr[entryIndex]) },
+                { cleared: true });
+
+        }
+        res.redirect('back');
+
+    }
+});
+
 
 
 
@@ -311,7 +326,8 @@ app.post('/compose', async function (req, res) {
         from: req.user._id,
         subject: req.body.subject,
         date: new Date().toLocaleString("en-US", { timeZone: "America/Regina" }),
-        message: req.body.message
+        message: req.body.message,
+        cleared: false
 
     });
 

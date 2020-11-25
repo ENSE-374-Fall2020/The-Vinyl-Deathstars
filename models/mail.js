@@ -14,7 +14,9 @@ const mailSchema = new mongoose.Schema(
 
         date: Date,
 
-        message: String
+        message: String,
+
+        cleared: Boolean
     });
 
 const Mail = mongoose.model('Mail', mailSchema);
