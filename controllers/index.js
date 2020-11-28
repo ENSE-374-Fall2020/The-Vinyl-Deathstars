@@ -92,6 +92,19 @@ app.get('/', function (req, res) {
     }
 });
 
+
+app.get('/account', async function (req, res) {
+    if (req.isAuthenticated()) {
+
+        var classifieds = await Classified.find({ user: req.user._id });
+        res.render('./pages/account.ejs', { user: req.user.username, classifieds: classifieds });
+    }
+    else {
+        res.redirect('back');
+
+    }
+});
+
 app.get('/createPost', function (req, res) {
     if (req.isAuthenticated()) {
 
@@ -139,8 +152,8 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
 
     }
     else {
-        res.redirect('/');
-
+        // res.redirect('/');
+        res.send("not working");
     }
 });
 
@@ -191,7 +204,18 @@ app.get('/classified', async function (req, res) {
     }
 });
 
+app.post("/deleteClassified", async function (req, res) {
+    if (req.isAuthenticated()) {
+        console.log(req.body._id);
+        await Classified.deleteOne({ _id: req.body._id });
 
+        res.redirect('back');
+    }
+    else {
+        res.redirect('/');
+
+    }
+});
 
 
 app.get('/inbox', async function (req, res) {
@@ -287,7 +311,16 @@ app.post('/deleteMail', async function (req, res) {
 app.get('/compose', function (req, res) {
     if (req.isAuthenticated()) {
 
-        res.render('./pages/compose.ejs', { user: req.user.username });
+        if (req.query.sendTo) {
+            console.log(req.query.sendTo);
+            res.render('./pages/compose.ejs', { user: req.user.username, recipient: req.query.sendTo });
+
+        } else {
+            res.render('./pages/compose.ejs', { user: req.user.username, recipient: false });
+        }
+
+
+
     }
     else {
         res.redirect('/');
