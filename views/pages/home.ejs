@@ -11,71 +11,70 @@
     <title>Home</title>
 </head>
 
-<body class="">
 
-    <div class="container">
-        <%- include('../partials/navbar.ejs',{user:user}) %>
-        <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
-        <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
 
-        <div class="row">
-            <div class="col">
-                <div class="jumbotron">
-                    <div class="container">
-                        <h1 class="display-3">Welcome!</h1>
-                        <p>Get ready to start saving on textbooks.</p>
-                        <p><a class="btn btn-primary btn-lg" href="#" role="button" data-dismiss="modal"
-                                data-toggle="modal" data-target="#loginModal">Get started</a></p>
-                    </div>
-                </div>
+<div class="container">
+    <%- include('../partials/navbar.ejs',{user:user}) %>
+    <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
+    <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
 
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron splash  text-outline">
                 <div class="container">
-                    <!-- Example row of columns -->
-                    <div class="row">
-                        <div class="col">
-                            <h2>Our values</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-                                commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
-                                porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <h1 class="display-3">Welcome!</h1>
+                    <p>Get ready to start saving on textbooks.</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button" data-dismiss="modal" data-toggle="modal"
+                            data-target="#loginModal">Get started</a></p>
+                </div>
+            </div>
 
-                        </div>
-                        <div class="col">
-                            <h2>Our Goal</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-                                commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
-                                porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                        </div>
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="col">
+                        <h2>Our values</h2>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
+                            commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
+                            porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+
+                    </div>
+                    <div class="col">
+                        <h2>Our Goal</h2>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
+                            commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam
+                            porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     </div>
                 </div>
+            </div>
 
-                <hr>
+            <hr>
 
-            </div> <!-- /container -->
-
-        </div>
-    </div>
-
+        </div> <!-- /container -->
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
 
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 </body>
 
 </html>

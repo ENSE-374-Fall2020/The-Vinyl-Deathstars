@@ -19,51 +19,56 @@
         <%- include('../partials/navbar.ejs',{user:user}) %>
         <%- include('../partials/loginModal.ejs',{errorLogin:false}) %>
         <%- include('../partials/signupModal.ejs',{errorSignup:false}) %>
-        <div class="row">
-            <div class="col-1">
-                <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
-            </div>
-            <div class="col-md-6 offset-md-1 card card-body ">
-                <img class="classified-img bg-dark img-rounded" src="<%=classified.image%>"></img>
-            </div>
-            <div class=" col-md-3">
-                <div class=" card bg-white text-center">
-                    <div class="card-header">
-                        <h4><%=classified.user.username%></h4>
-                    </div>
-                    <div class="card-body">
-                        <button class="btn btn-primary btn-lg" href="#">Send Message</button>
-                    </div>
+        <div class="p-6 ">
+            <div class="row">
+                <div class="col-1">
+                    <button onclick="history.back(-1)" class="btn"><i class="fas fa-arrow-left"></i></button>
                 </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-2 mt-5 ">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="d-inline">Book Title <span style="text-transform: capitalize;"
-                                class=" p-2   badge badge-<%= (classified.postType=='buying') ? 'success' : 'primary'%>"><%=classified.postType%></span>
-                        </h3> <span
-                            class="float-right text-muted"><% for(var i=0; i < classified.categorys.length; i++) { %>
-                            <%=classified.categorys[i] %>
-                            <% } %>
-
-                        </span>
-                        <div>
-                            <span class="text-success">Price: <%=classified.price%></span></div>
-                    </div>
-                    <card class="card-body">
-                        <h4 class=" ">Description
-
-                        </h4>
-                        <p class="lead"><%=classified.description%></p>
-                    </card>
+                <div class="col-md-6 offset-md-1 card card-body ">
+                    <img class="classified-img bg-dark img-rounded" src="<%=classified.image%>"></img>
                 </div>
+                <div class=" col-md-3">
+                    <div class=" card bg-white text-center">
+                        <div class="card-header">
+                            <h4><%=classified.user.username%></h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/compose" method="GET"><button class="btn btn-primary btn-lg" href="#">Send
+                                    Message</button>
+                                <input type="hidden" value="<%=classified.user.username%>" name="sendTo">
+                            </form>
+                        </div>
+                    </div>
 
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-2 mt-5 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="d-inline">Book Title <span style="text-transform: capitalize;"
+                                    class=" p-2   badge badge-<%= (classified.postType=='buying') ? 'success' : 'primary'%>"><%=classified.postType%></span>
+                            </h3> <span
+                                class="float-right text-muted"><% for(var i=0; i < classified.categorys.length; i++) { %>
+                                <%=classified.categorys[i] %>
+                                <% } %>
 
+                            </span>
+                            <div>
+                                <span class="text-success">Price: &#36;<%=classified.price%></span></div>
+                        </div>
+                        <card class="card-body">
+                            <h4 class=" ">Description
+
+                            </h4>
+                            <p style="white-space: pre-wrap;" class="lead"><%=classified.description%></p>
+                        </card>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

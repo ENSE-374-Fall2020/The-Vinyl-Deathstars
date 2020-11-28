@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!-- Latest compiled and minified CSS -->
+    <title>Home</title>
+
+</head>
+
+
+
+<div class="container-fluid">
+    <%- include('../partials/navbar.ejs',{user:user}) %>
+    <div class="row">
+        <div class="col-md-6 border-right p-3">
+            <h3 class="text-center ">
+                My Classifieds
+            </h3>
+            <div class="row">
+                <% for(var classifiedEntry = 0; classifiedEntry < classifieds.length; classifiedEntry++ ) { %>
+                <%- include('../partials/myClassifiedEntry.ejs',
+                    {title: classifieds[classifiedEntry].name,
+                     _id: classifieds[classifiedEntry]._id,
+                    description: classifieds[classifiedEntry].description,
+                    price: classifieds[classifiedEntry].price,
+                    category: classifieds[classifiedEntry].categorys,
+                    postType: classifieds[classifiedEntry].postType,
+                    image: classifieds[classifiedEntry].image});
+                    %>
+                <% }%>
+
+            </div>
+            <% if(classifieds.length == 0) { %>
+            <h5 class="d-flex justify-content-center text-muted">Empty...</h5>
+            <%}%>
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center p-3">
+                My Favourites
+            </h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail First"
+                            src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail Second"
+                            src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" alt="Bootstrap Thumbnail Third"
+                            src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
+                        <div class="card-block">
+                            <h5 class="card-title">
+                                Card title
+                            </h5>
+                            <p class="card-text">
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
+                                gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script type="text/javascript" src="/scripts/account-script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation2/4.1.0/bootstrap-confirmation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-confirmation2@4.1.0/dist/bootstrap-confirmation.min.js"></script>
+
+
+</body>
+
+</html>

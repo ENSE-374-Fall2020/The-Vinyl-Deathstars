@@ -11,11 +11,11 @@
     <div class="card-body">
 
 
-        <img class="img-fluid img-thumbnail" src=" <%=image%>"></img>
+        <img class="img-fluid img-thumbnail search-img" src=" <%=image%>"></img>
         <p class="card-text"><%=description%></p>
         <p class="card-text">$<%=price%></p>
         <form action="/classified" method="GET">
-            <button type="submit" class="btn btn-primary">View</button>
+            <button type="submit" class="btn-secondary btn ">View</button>
             <input type="hidden" name="_id" value="<%=_id%>" />
         </form>
 

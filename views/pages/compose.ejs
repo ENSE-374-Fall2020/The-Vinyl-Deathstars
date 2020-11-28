@@ -51,7 +51,8 @@
                 <form>
                     <div class="form-group row ml-1">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input name="to" class="mdl-textfield__input" type="text" id="to">
+                            <input name="to" class="mdl-textfield__input" type="text" id="to" <% if(recipient) {%>
+                                value="<%=recipient%>" <%}%>>
                             <label class="mdl-textfield__label mdl-color-text--indigo-500 ">To:</label>
                         </div>
                     </div>

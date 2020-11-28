@@ -1,15 +1,16 @@
 <nav class="navbar navbar-expand-sm navbar-inverse  navbar-light">
 
     <ul class="navbar-nav">
-        <a class="navbar-brand" href="/">Website Title</a>
-        <li class="nav-item active">
+        <a class="navbar-brand" href="/">Book Sale</a>
+        <li class="nav-item">
+            <a class="nav-link" href="search">Search Books</a>
+        </li>
+        <% if(user) {%>
+        <li class="nav-item ">
             <a class="nav-link" href="createPost">Post Book</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Account</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="search">Search Books</a>
+            <a class="nav-link" href="account">Account</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="compose">Send Mail</a>
@@ -18,6 +19,7 @@
             <a class="nav-link" href="inbox">Inbox</a>
         </li>
 
+        <% }%>
 
     </ul>
     <ul class="nav navbar-nav ml-auto">
