@@ -29,6 +29,7 @@ app.set('view engine', 'ejs');
 const User = require("../models/user");
 const Mail = require("../models/mail");
 const Classified = require("../models/classified");
+const Favourite = require("../models/favourite");
 
 
 
@@ -97,10 +98,13 @@ app.get('/account', async function (req, res) {
     if (req.isAuthenticated()) {
 
         var classifieds = await Classified.find({ user: req.user._id });
-        res.render('./pages/account.ejs', { user: req.user.username, classifieds: classifieds });
+        var favourites = await Favourite.find({ user: req.user._id }).populate("classified");
+        console.log(favourites);
+
+        res.render('./pages/account.ejs', { user: req.user.username, classifieds: classifieds, favourites: favourites });
     }
     else {
-        res.redirect('back');
+        res.redirect('/');
 
     }
 });
@@ -146,8 +150,7 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
                 if (err) console.log(err);
             });
 
-            console.log(classified);
-            res.redirect('/');
+            res.redirect('/account');
         }
 
     }
@@ -194,12 +197,20 @@ app.get('/classified', async function (req, res) {
         res.redirect('/search');
     }
     if (req.isAuthenticated()) {
+        var favourite = await Favourite.find({
+            user: req.user._id,
+            classified: req.query._id
+        });
+        var isFavourited = favourite.length > 0;
+        console.log(isFavourited);
 
-
-        res.render('./pages/classified.ejs', { user: req.user.username, classified: classified });
+        res.render('./pages/classified.ejs', {
+            user: req.user.username, classified: classified, displayFavourite: true,
+            favourite: isFavourited
+        });
     }
     else {
-        res.render('./pages/classified.ejs', { user: false, classified: classified });
+        res.render('./pages/classified.ejs', { user: false, classified: classified, displayFavourite: false });
 
     }
 });
@@ -207,8 +218,11 @@ app.get('/classified', async function (req, res) {
 app.post("/deleteClassified", async function (req, res) {
     if (req.isAuthenticated()) {
         console.log(req.body._id);
+        //find classified, then also delete associated favourites as well as classified
+        var classified = await Classified.findOne({ _id: req.body._id });
+        console.log(classified._id);
+        await Favourite.deleteMany({ classified: classified._id });
         await Classified.deleteOne({ _id: req.body._id });
-
         res.redirect('back');
     }
     else {
@@ -422,6 +436,55 @@ app.get("/logout", function (req, res) {
 });
 
 
+
+
+app.post("/setFavourite", function (req, res) {
+
+    if (req.isAuthenticated()) {
+        if (req.body.c_id) {
+            var c_id = req.body.c_id;
+            console.log(c_id);
+        }
+        console.log(c_id);
+        if (c_id) {
+            const favourite = new Favourite({
+                user: req.user._id,
+                classified: c_id
+
+            });
+
+            favourite.save(function (err) {
+                if (err) { console.log(err); }
+                else { res.send({ message: favourite }); };
+            });
+        }
+
+
+    }
+
+});
+
+app.post("/unsetFavourite", async function (req, res) {
+
+    if (req.isAuthenticated()) {
+        if (req.body.c_id) {
+            var c_id = req.body.c_id;
+            console.log(c_id);
+        }
+        console.log(c_id);
+        if (c_id) {
+            await Favourite.findOneAndDelete({
+                user: req.user._id,
+                classified: c_id
+            });
+
+            res.send({ message: "successful unfavourite" });
+
+
+        }
+
+    }
+});
 
 
 

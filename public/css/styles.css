@@ -74,6 +74,8 @@ body{
     background:#87898b;
 } */
 
+
+
 .classifiedText{
     height: 60 px;
 }
@@ -83,6 +85,8 @@ body{
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4) ), url("../web-images/jumbo-bg.jpg");
     /* background-image:  */
     background-size: cover;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }
 
 .text-outline
@@ -93,4 +97,15 @@ body{
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;  
+}
+
+#favourite {
+    color: red;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.5em;
+}
+#unfavourite {
+    color: red;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.5em;
 }
