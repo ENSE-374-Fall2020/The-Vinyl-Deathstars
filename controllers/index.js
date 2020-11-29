@@ -166,15 +166,25 @@ app.post('/createPost', upload.single('myFile'), function (req, res) {
 
 
 app.get('/search', async function (req, res) {
-    console.log(req.query);
     if (req.query.search) {
-        //searches description and name from previous index
-        var classifieds = await Classified.find({ $text: { $search: req.query.search } }).populate('user', 'username');
+        if (req.query.searchCategory) {
+            var classifieds = await Classified.find({ categorys: { $in: req.query.searchCategory }, $text: { $search: req.query.search } }).populate('user', 'username');
+
+        } else {
+            var classifieds = await Classified.find({ $text: { $search: req.query.search } }).populate('user', 'username');
+
+        }
+
     }
     else {
-        var classifieds = await Classified.find().populate('user', 'username');
-    }
+        if (req.query.searchCategory) {
+            var classifieds = await Classified.find({ categorys: { $in: req.query.searchCategory } }).populate('user', 'username');
 
+        } else {
+            var classifieds = await Classified.find().populate('user', 'username');
+
+        }
+    }
     if (req.isAuthenticated()) {
 
 
@@ -306,9 +316,13 @@ app.get('/viewMail', async function (req, res) {
 
 app.post('/deleteMail', async function (req, res) {
     if (req.isAuthenticated()) {
-
-        var deleteArr = [];
-        deleteArr.push(req.body.selections);
+        if (!Array.isArray(req.body.selections)) {
+            var deleteArr = [];
+            deleteArr.push(req.body.selections);
+        }
+        else {
+            var deleteArr = req.body.selections;
+        }
         for (var entryIndex = 0; entryIndex < deleteArr.length; entryIndex++) {
             var update = await Mail.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(deleteArr[entryIndex]) },
                 { cleared: true });
@@ -488,3 +502,26 @@ app.post("/unsetFavourite", async function (req, res) {
 
 
 
+function mailsort(a, b, sort) {
+    if (sort == 'date') {
+        var date1 = new Date(a.date);
+        var date2 = new Date(b.date);
+
+        return (date1 > date2) ? direction : direction * -1;
+
+    }
+    if (sort == 'from') {
+        var user1 = a.from;
+        var user2 = b.from;
+
+        return (user1.username.localeCompare(user2.username)) * direction;
+
+    }
+    if (sort == 'subject') {
+        var user1 = a;
+        var user2 = b;
+
+        return (user1.subject.localeCompare(user2.subject)) * direction;
+
+    }
+}
