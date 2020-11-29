@@ -15,10 +15,11 @@
 
 
 <div class="container-fluid">
-    <%- include('../partials/navbar.ejs',{user:user}) %>
+
+    <div class="offset-3 justify-content-center w-50"> <%- include('../partials/navbar.ejs',{user:user}) %></div>
     <div class="row">
-        <div class="col-md-6  p-3 border-bar">
-            <h3 class="text-center display-3 ">
+        <div class="col-md-6   border-bar">
+            <h3 class="text-center p-3 display-3 bottom-bar mb-5">
                 My Classifieds
             </h3>
             <div class="row">
@@ -36,11 +37,11 @@
 
             </div>
             <% if(classifieds.length == 0) { %>
-            <h5 class="d-flex justify-content-center text-muted">Empty...</h5>
+            <h5 class="d-flex justify-content-center text-muted ">Empty...</h5>
             <%}%>
         </div>
         <div class="col-md-6 ">
-            <h3 class="text-center p-3 display-3" >
+            <h3 class="text-center p-3 display-3  bottom-bar " >
                 My Favourites
             </h3>
             <div class="row">

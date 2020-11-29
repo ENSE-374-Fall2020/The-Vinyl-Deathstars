@@ -34,9 +34,25 @@
 .mailEntry{
     transition: 0.3s;
 }
+.bottom-bar{
+    border-bottom: dashed thin black
+}
+
+.ql-snow
+{
+    border:solid thin !important;
+}
+
+.ql-editor{
+    height:20em;
+}
+.btn-variant
+{
+    background: #ada7f4
+}
 .mailEntry:hover{
     cursor: pointer;
-    background-color: #b2d8b4 !important;
+    background-color: #b2d3d8 !important;
     color: white !important;
 }
 
@@ -59,8 +75,13 @@
 }
 
 body{
-    background: #e1f0f9;
+    background: rgb(232,231,244);
+    background: linear-gradient(90deg, rgba(232,231,244,1) 37%, rgba(180,242,255,1) 100%);
+
+
+    
 }
+
 
 /* .card-color-main{
     background:#87898b;
@@ -73,7 +94,6 @@ body{
 .navbar{
     background:#87898b;
 } */
-
 
 
 .classifiedText{
