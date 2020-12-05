@@ -1,4 +1,5 @@
 # bookSale
+The wiki contains details about this project along with associated Vlog and Documentation, it can be found [here](https://github.com/teamvinyldeathstars/bookSale/wiki).
 
 # Impact
 
