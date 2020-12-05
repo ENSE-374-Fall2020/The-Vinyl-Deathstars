@@ -37,7 +37,7 @@ const Favourite = require("../models/favourite");
 app.use(express.static('public'));
 app.use(session({
     //secret: process.env.SECRET, // stores our secret in our .env file
-    secret: "not so secret", //Used for in lab only
+    secret: "not so secret",
     resave: false,              // other config settings explained in the docs
     saveUninitialized: false,
     cookie: { path: '/', httpOnly: true, maxAge: 36000000 }
@@ -410,12 +410,12 @@ app.post('/login', function (req, res, next) {
         if (err) { return next(err); }
         if (!user) {
             console.log(info);
-            return res.send({ error: "false" });
+            return res.status(409).send(info);
         }
         req.logIn(user, async function (err) {
             if (err) {
 
-                return next(err);
+                return res.status(409).send(err);
             }
             return res.redirect('back');
         });
@@ -427,11 +427,11 @@ app.post('/login', function (req, res, next) {
 
 
 app.post('/register', function (req, res) {
-    console.log(req.body.username);
-    User.register({ username: req.body.username }, req.body.password, function (err, user) {
+    console.log(req.body);
+    User.register({ username: req.body.username }, req.body.password, function (err, user, info) {
         if (err) {
             console.log(err + " THIS");
-            res.redirect('/');
+            res.status(409).send(err);
         } else {
             passport.authenticate("local")(req, res, function () {
 
