@@ -1,8 +1,8 @@
-<div class="card text-center col-md-3 m-2 p-0 shadow-lg">
+<div class="card text-center col-md-3 m-2 p-0 shadow-lg zoom">
     <div class="bg-light"><span style="text-transform: capitalize;"
             class="p-1 m-1 float-right badge badge-<%= (postType=='buying') ? 'success' : 'primary'%>"><%=postType%></span>
     </div>
-    <div class="card-header ">
+    <div class="card-header desc">
 
         <h5><%= title %></h5>
 
@@ -12,15 +12,15 @@
 
 
         <img class="img-fluid img-thumbnail search-img" src=" <%=image%>"></img>
-        <p class="card-text"><%=description%></p>
-        <p class="card-text">$<%=price%></p>
-        <form action="/classified" method="GET">
-            <button type="submit" class="btn-variant btn ">View</button>
-            <input type="hidden" name="_id" value="<%=_id%>" />
-        </form>
+        <p class="card-text text-muted desc"><%=description%></p>
+        <p class="card-text text-success">$<%=price%></p>
+
 
     </div>
-
+    <form class="m-3" action="/classified" method="GET">
+        <button type="submit" class="btn-variant btn ">View</button>
+        <input type="hidden" name="_id" value="<%=_id%>" />
+    </form>
     <div class="card-footer text-muted">
         <% for (var categoryEntry = 0; categoryEntry < category.length; categoryEntry++){ %>
         <span> <%=category[categoryEntry]%> </span>

@@ -13,16 +13,10 @@
                         <input type="username" class="form-control mb-3 mt-3" id="loginEmail" placeholder="Email"
                             name="username" /><label for="inputEmail4"></label>
 
-                        <input type="password" class="form-control mb-3 mt-3" id="loginEmail" placeholder="Password"
+                        <input type="password" class="form-control mb-3 mt-3" id="loginPassword" placeholder="Password"
                             name="password" />
-                        <input type="submit" value="Login" class="btn btn-outline-primary" />
-                        <%if (errorLogin == true) { %>
-                        <div class="">
-                            <small id="passwordHelp" class="text-danger">
-                                Password or Email is incorrect.
-                            </small>
-                        </div>
-                        <% } %>
+                        <input id="loginSubmit" type="submit" value="Login" class="btn btn-outline-primary" />
+                        <div id="errTextLogin" class="alert alert-danger m-3" style="display: none"></div>
                     </div>
                 </form>
                 <div class="modal-footer">

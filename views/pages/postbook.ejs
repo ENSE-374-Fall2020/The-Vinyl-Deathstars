@@ -21,8 +21,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6 offset-md-2">
                     <label for="inputTitle">Title</label>
-                    <input name="inputTitle" required placeholder="Enter Book Title" type="text" class="form-control"
-                        id="inputTitle">
+                    <input maxlength="100" name="inputTitle" required placeholder="Enter Book Title" type="text"
+                        class="form-control" id="inputTitle">
                 </div>
 
 
@@ -78,14 +78,14 @@
                        
                     </div> -->
                     <label for="myFile">Upload a file</label>
-                    <input type="file" name="myFile" />
+                    <input type="file" name="myFile" required />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 offset-md-2">
                     <label for="inputPrice">Description</label>
-                    <textarea required name="inputDescription" placeholder="Describe Post" min="0" type="textarea"
-                        step="0.01" class="form-control" id="inputDescription"></textarea>
+                    <textarea maxlength="1000" required name="inputDescription" placeholder="Describe Post" min="0"
+                        type="textarea" step="0.01" class="form-control" id="inputDescription"></textarea>
                 </div>
             </div>
             <div class="form-row">

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/scripts/loginOrRegistration-script.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -46,7 +47,7 @@
                 <div class="col-md-6 offset-md-2 mt-5 ">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="d-inline">Book Title <span style="text-transform: capitalize;"
+                            <h3 class="d-inline"><%=classified.name%><span style="text-transform: capitalize;"
                                     class=" p-2   badge badge-<%= (classified.postType=='buying') ? 'success' : 'primary'%>"><%=classified.postType%></span>
                             </h3> <span
                                 class="float-right text-muted"><% for(var i=0; i < classified.categorys.length; i++) { %>

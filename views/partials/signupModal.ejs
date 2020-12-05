@@ -8,23 +8,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="col-md-8 offset-md-1" method="POST" action="/register">
+                <form id="signup" class="col-md-8 offset-md-1" method="POST" action="/register"
+                    oninput='signUpPasswordConfirm.setCustomValidity(signUpPasswordConfirm.value != signUpPassword.value ? "Passwords need to match" : "" )'>
                     <div class="form-group">
                         <input required="required" type="email" class="form-control mb-3 mt-3" id="signUpEmail"
                             placeholder="Email" name="username" />
-                        <input required="required" type="password" class="form-control mb-3 mt-3" id="signUpEmail"
+                        <input required="required" type="password" class="form-control mb-3 mt-3" id="signUpPassword"
                             placeholder="Password" name="password" />
-                        <input type="submit" value="Sign Up" class="btn btn-outline-primary" />
-                        <!-- <%if (errorSignup == true) { %>
-                        <div class="">
-                            <small id="signupHelp" class="text-danger">
-                                Email is invalid.
-                            </small>
-                        </div>
-                        <% } %> -->
+                        <input required="required" type="password" class="form-control mb-3 mt-3"
+                            id="signUpPasswordConfirm" placeholder="Confirm Password" name="passwordConfirm" />
+                        <input id="signUpSubmit" type="submit" value="Sign Up" class="btn btn-outline-primary" />
                     </div>
                 </form>
             </div>
+            <div id="errTextSignup" class="alert alert-danger m-3" style="display: none"></div>
             <div class="modal-footer">
                 <a class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Already a
                     user? Login here</a>
