@@ -1,11 +1,12 @@
 # bookSale
 
 ## Installation
-1. Install [node](https://nodejs.org/en/download/)
+1. Install [node](https://nodejs.org/en/download/) and [mongo](https://www.mongodb.com/try/download/community)
 2. Download and extract our [project.](https://github.com/teamvinyldeathstars/bookSale/archive/main.zip)
 3. Travel to the folder in command line.
 4. enter  'npm install' into the command line.
-5. Visit [localhost:3000](http://localhost:3000)
+5. enter 'node ./controllers/index.js' in command line
+6. Visit [localhost:3000](http://localhost:3000)
 
 ## Wiki
 The wiki contains details about this project along with associated Vlog and Documentation, it can be found [here](https://github.com/teamvinyldeathstars/bookSale/wiki).
