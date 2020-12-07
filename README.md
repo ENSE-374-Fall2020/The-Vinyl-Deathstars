@@ -1,5 +1,8 @@
 # bookSale
 
+## Final Project Report
+[here](https://github.com/teamvinyldeathstars/bookSale/blob/main/Project%20Report/Final-Report.pdf)
+
 ## Installation
 1. Install [node](https://nodejs.org/en/download/) and [mongo](https://www.mongodb.com/try/download/community)
 2. Download and extract our [project.](https://github.com/teamvinyldeathstars/bookSale/archive/main.zip)
